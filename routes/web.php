@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoggerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,7 @@ Auth::routes([
 
 Route::group(['prefix' => 'master', 'middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/logger', [LoggerController::class, 'index'])->name('logger.index');
+    Route::get('/logger/ajax', [LoggerController::class, 'ajax'])->name('logger.ajax');
 });
