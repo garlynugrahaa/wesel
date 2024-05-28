@@ -10,13 +10,12 @@ return new class extends Migration
     {
         Schema::create('wesels', function (Blueprint $table) {
             $table->uuid('id');
+            $table->string('area', 50);
             $table->dateTime('datetime');
             $table->double('voltage', 15, 2);
             $table->double('current', 15, 2);
-            $table->boolean('status');
             $table->string('message', 100);
             $table->enum('category', ['Event', 'Warning', 'Alarm']);
-            $table->string('area', 50);
             $table->timestamps();
         });
     }
