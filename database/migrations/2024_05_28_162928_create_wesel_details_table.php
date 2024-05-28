@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('wesel_details', function (Blueprint $table) {
             $table->uuid('id');
             $table->uuid('wesel_id')->nullable();
+            $table->dateTime('datetime');
             $table->double('voltage', 15, 2);
             $table->double('current', 15, 2);
             $table->timestamps();
