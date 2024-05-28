@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wesel;
+use App\Models\WeselDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -19,7 +20,7 @@ class LoggerController extends Controller
 
     public function create()
     {
-        $Title = "Create Logger";
+        $Title = "Logger Create";
 
         return view('master.logger.create', compact('Title'));
     }
@@ -41,7 +42,10 @@ class LoggerController extends Controller
 
     public function show(string $id)
     {
-        //
+        $Title = "Logger Detail";
+        $Wesel = Wesel::where('id', $id)->get();
+
+        return view('master.logger.show', compact('Title', 'Wesel'));
     }
 
     public function edit(string $id)
@@ -73,10 +77,27 @@ class LoggerController extends Controller
             $Data = Wesel::latest()->get();
 
             return DataTables::of($Data)->addIndexColumn()->addColumn('date', function($item) {
-                return Carbon::parse($item->datetime)->format('M d, Y');
+                return Carbon::parse($item->updated_at)->format('M d, Y');
             })->addColumn('time', function($item) {
-                return Carbon::parse($item->datetime)->format('H:i') . ' WIB';
+                return Carbon::parse($item->updated_at)->format('H:i') . ' WIB';
             })->addColumn('action', 'master.logger.action')->rawColumns(['date', 'time', 'action'])->make(true);
+        }
+    }
+
+    public function ajaxShow(string $id)
+    {
+        if (request()->ajax()) {
+            $Data = WeselDetail::latest()->where('wesel_id', $id)->get();
+
+            return DataTables::of($Data)->addIndexColumn()->addColumn('date', function($item) {
+                return Carbon::parse($item->created_at)->format('M d, Y');
+            })->addColumn('time', function($item) {
+                return Carbon::parse($item->created_at)->format('H:i') . ' WIB';
+            })->editColumn('voltage', function($item) {
+                return number_format($item->voltage) . ' Volt';
+            })->editColumn('current', function($item) {
+                return number_format($item->current) . ' Ampere';
+            })->rawColumns(['date', 'time'])->make(true);
         }
     }
 }
