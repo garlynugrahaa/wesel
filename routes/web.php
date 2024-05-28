@@ -27,5 +27,9 @@ Route::group(['prefix' => 'master', 'middleware' => ['auth:sanctum', 'verified']
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/logger', [LoggerController::class, 'index'])->name('logger.index');
+    Route::get('/logger/create', [LoggerController::class, 'create'])->name('logger.create');
+    Route::post('/logger/store', [LoggerController::class, 'store'])->name('logger.store');
+    Route::delete('/logger/{id}/show', [LoggerController::class, 'show'])->name('logger.show');
+    Route::delete('/logger/{id}/destroy', [LoggerController::class, 'destroy'])->name('logger.destroy');
     Route::get('/logger/ajax', [LoggerController::class, 'ajax'])->name('logger.ajax');
 });

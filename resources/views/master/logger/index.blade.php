@@ -18,7 +18,9 @@
             <div class="card">
                 <div class="card-header">
                     <div class="col">
-                        
+                        <a href="{{ route('logger.create') }}" class="btn btn-primary float-right">
+                            <span class="fas fa-plus"></span> {{ __('Create') }}
+                        </a>
                     </div>
                 </div>
 
@@ -28,11 +30,12 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">{{ __('No') }}</th>
+                                    <th class="text-center">{{ __('Area') }}</th>
                                     <th class="text-center">{{ __('Date') }}</th>
                                     <th class="text-center">{{ __('Time') }}</th>
                                     <th class="text-center">{{ __('Message') }}</th>
                                     <th class="text-center">{{ __('Category') }}</th>
-                                    <th class="text-center">{{ __('Area') }}</th>
+                                    <th class="text-center">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,11 +59,12 @@
                 { data: 'no', name: 'no', render: function (data, type, row, meta) {
                         return meta.row + meta.settings._iDisplayStart + 1;
                 }, width: '5%', class: 'text-center' },
+                { data: 'area', name: 'area', width: '15%', class: 'text-center' },
                 { data: 'date', name: 'date', width: '10%', class: 'text-center' },
                 { data: 'time', name: 'time', width: '10%', class: 'text-center' },
                 { data: 'message', name: 'message' },
                 { data: 'category', name: 'category', class: 'text-center' },
-                { data: 'area', name: 'area', width: '15%', class: 'text-center' },
+                { data: 'action', name: 'action', orderable: true, searchable: true, width: '5%' }
             ]
         })
     </script>
