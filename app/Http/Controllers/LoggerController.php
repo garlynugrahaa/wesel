@@ -47,6 +47,14 @@ class LoggerController extends Controller
 
         return view('master.logger.show', compact('Title', 'Wesel'));
     }
+    
+    public function chart(string $id)
+    {
+        $Title = "Logger Detail";
+        $Wesel = Wesel::where('id', $id)->get();
+
+        return view('master.logger.chart', compact('Title', 'Wesel'));
+    }
 
     public function edit(string $id)
     {
@@ -99,5 +107,35 @@ class LoggerController extends Controller
                 return number_format($item->current) . ' Ampere';
             })->rawColumns(['date', 'time'])->make(true);
         }
+    }
+
+    public function chartVoltage(string $id)
+    {
+        $Monitoring = WeselDetail::where('wesel_id', $id)->get();
+
+        $CVoltage = [];
+        foreach ($Monitoring as $Data) {
+            $CVoltage[] = [
+                'label' => Carbon::parse($Data->datetime)->format('M d, Y H:i'),
+                'value' => $Data->voltage,
+            ];
+        }
+
+        return response()->json($CVoltage);
+    }
+
+    public function chartCurrent(string $id)
+    {
+        $Monitoring = WeselDetail::where('wesel_id', $id)->get();
+
+        $CCurrent = [];
+        foreach ($Monitoring as $Data) {
+            $CCurrent[] = [
+                'label' => Carbon::parse($Data->datetime)->format('M d, Y H:i'),
+                'value' => $Data->current,
+            ];
+        }
+
+        return response()->json($CCurrent);
     }
 }
