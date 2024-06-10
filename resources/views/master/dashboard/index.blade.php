@@ -42,7 +42,7 @@
                                             <h4>Total Volts</h4>
                                         </div>
                                         <div class="card-body">
-                                            {{ $M1->voltage; }} {{ __('Volt') }}
+                                            {{ $M1->voltage; }} {{ __('V') }}
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                             <h4>Total Ampere</h4>
                                         </div>
                                         <div class="card-body">
-                                            {{ $M1->current; }} {{ __('Ampere') }}
+                                            {{ $M1->current; }} {{ __('A') }}
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                             <h4>Total Volts</h4>
                                         </div>
                                         <div class="card-body">
-                                            {{ $M2->voltage; }} {{ __('Volt') }}
+                                            {{ $M2->voltage; }} {{ __('V') }}
                                         </div>
                                     </div>
                                 </div>
@@ -100,7 +100,7 @@
                                             <h4>Total Ampere</h4>
                                         </div>
                                         <div class="card-body">
-                                            {{ $M2->current; }} {{ __('Ampere') }}
+                                            {{ $M2->current; }} {{ __('A') }}
                                         </div>
                                     </div>
                                 </div>
@@ -212,6 +212,169 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="card card-statistic-1 bg-warning">
                                         <div class="card-icon bg-warning">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-secondary">
+                                        <div class="card-icon bg-secondary">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-secondary">
+                                        <div class="card-icon bg-secondary">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                  <h4>Machine 1</h4>
+                </div>
+                <div class="card-body">
+                    @foreach($Machine1 as $M1) 
+                        @if($M1->relay1 == '1' && $M1->relay2 == '1') 
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-primary">
+                                        <div class="card-icon bg-primary">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-success">
+                                        <div class="card-icon bg-success">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @elseif($M1->relay1 == '1' && $M1->relay2 == '0')
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-primary">
+                                        <div class="card-icon bg-primary">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-secondary">
+                                        <div class="card-icon bg-secondary">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @elseif($M1->relay1 == '0' && $M1->relay2 == '1')
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-secondary">
+                                        <div class="card-icon bg-secondary">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-success">
+                                        <div class="card-icon bg-success">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-secondary">
+                                        <div class="card-icon bg-secondary">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-secondary">
+                                        <div class="card-icon bg-secondary">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="col-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                  <h4>Machine 2</h4>
+                </div>
+                <div class="card-body">
+                    @foreach($Machine2 as $M2) 
+                        @if($M2->relay1 == '1' && $M2->relay2 == '1') 
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-primary">
+                                        <div class="card-icon bg-primary">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-success">
+                                        <div class="card-icon bg-success">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @elseif($M2->relay1 == '1' && $M2->relay2 == '0')
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-primary">
+                                        <div class="card-icon bg-primary">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-secondary">
+                                        <div class="card-icon bg-secondary">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @elseif($M2->relay1 == '0' && $M2->relay2 == '1')
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-secondary">
+                                        <div class="card-icon bg-secondary">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="card card-statistic-1 bg-success">
+                                        <div class="card-icon bg-success">
                                             
                                         </div>
                                     </div>

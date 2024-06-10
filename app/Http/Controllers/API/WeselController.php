@@ -20,8 +20,10 @@ class WeselController extends Controller
                 'area' => 'required',
                 'voltage' => 'required',
                 'current'   => 'required',
-                'message'   => 'required',
+                'message'   => '',
                 'category'   => 'required',
+                'relay1' => 'required|boolean',
+                'relay2' => 'required|boolean',
             ]);
     
             if ($Validator->fails()) {
@@ -42,6 +44,8 @@ class WeselController extends Controller
                     'current' => $Request->current,
                     'message' => $Request->message,
                     'category' => $Request->category,
+                    'relay1' => $Request->relay1,
+                    'relay2' => $Request->relay2,
                 ]);
             }
 

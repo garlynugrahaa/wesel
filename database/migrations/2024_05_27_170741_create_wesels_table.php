@@ -14,6 +14,8 @@ return new class extends Migration
             $table->double('voltage', 15, 2)->nullable();
             $table->double('current', 15, 2)->nullable();
             $table->string('message', 100)->nullable();
+            $table->boolean('relay1')->deafult(false)->nullable();
+            $table->boolean('relay2')->deafult(false)->nullable();
             $table->enum('category', ['Event', 'Warning', 'Alarm'])->nullable();
             $table->timestamps();
         });

@@ -19,6 +19,8 @@ class Wesel extends Model
         'message',
         'category',
         'area',
+        'relay1',
+        'relay2',
     ];
 
     protected $casts = [
